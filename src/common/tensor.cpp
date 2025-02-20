@@ -73,19 +73,24 @@ const T& Tensor<T>::operator[](int idx) const {
 
 template<typename T>
 T& Tensor<T>::at4d(int n, int c, int h, int w) {
-    int C = shape_[1];
-    int H = shape_[2];
-    int W = shape_[3];
-    int index = ((n*C + c)*H + h)*W + w;
+    int shape0 = (shape_.size() > 0) ? shape_[0] : 1;
+    int shape1 = (shape_.size() > 1) ? shape_[1] : 1;
+    int shape2 = (shape_.size() > 2) ? shape_[2] : 1;
+    int shape3 = (shape_.size() > 3) ? shape_[3] : 1;
+
+    int index = ((n * shape1 + c) * shape2 + h) * shape3 + w;
+
     return data_[index];
 }
 
 template<typename T>
 const T& Tensor<T>::at4d(int n, int c, int h, int w) const {
-    int C = shape_[1];
-    int H = shape_[2];
-    int W = shape_[3];
-    int index = ((n*C + c)*H + h)*W + w;
+    int shape0 = (shape_.size() > 0) ? shape_[0] : 1;
+    int shape1 = (shape_.size() > 1) ? shape_[1] : 1;
+    int shape2 = (shape_.size() > 2) ? shape_[2] : 1;
+    int shape3 = (shape_.size() > 3) ? shape_[3] : 1;
+
+    int index = ((n * shape1 + c) * shape2 + h) * shape3 + w;
     return data_[index];
 }
 
