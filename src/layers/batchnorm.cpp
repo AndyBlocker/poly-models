@@ -4,7 +4,7 @@
 
 Tensor<float> batchnorm2d(const Tensor<float> &input, const BNParam &param)
 {
-    ScopedTimer timer(OpType::OTHERS);
+    ScopedTimer timer(OpType::NORMALIZATION);
 
     int N = input.shape()[0];
     int C = input.shape()[1];

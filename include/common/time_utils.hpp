@@ -11,7 +11,8 @@ enum class OpType {
     POOL,
     OTHERS,
     OVERALL,
-
+    RELU,
+    NORMALIZATION,
     ENDOP, // add all new op before this, dont change this
 };
 

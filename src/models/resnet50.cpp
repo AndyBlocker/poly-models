@@ -190,6 +190,7 @@ Tensor<float> ResNet50::forward(const Tensor<float> &input)
     }
 
     {
+        ScopedTimer t(OpType::POOL);
         int N = x.shape()[0];
         int C = x.shape()[1];
         int H = x.shape()[2];

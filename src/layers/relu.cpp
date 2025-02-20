@@ -3,7 +3,7 @@
 
 Tensor<float> relu(const Tensor<float> &input)
 {
-    ScopedTimer timer(OpType::OTHERS);
+    ScopedTimer timer(OpType::RELU);
 
     Tensor<float> output = input; // 拷贝
     float* ptr = output.data();
@@ -18,7 +18,7 @@ Tensor<float> relu(const Tensor<float> &input)
 
 Tensor<float> relu6(const Tensor<float> &input)
 {
-    ScopedTimer timer(OpType::OTHERS);
+    ScopedTimer timer(OpType::RELU);
 
     Tensor<float> output = input;
     float* ptr = output.data();
