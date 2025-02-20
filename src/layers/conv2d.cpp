@@ -24,36 +24,36 @@ namespace
         // [N, C*kernel_h*kernel_w, out_h*out_w]
         Tensor<float> col(std::vector<int>{N, C * kernel_h * kernel_w, out_h * out_w});
 
-        for (int n = 0; n < N; n++)
-        {
-            float *col_data_n = col.data() + n * (col.shape()[1] * col.shape()[2]);
+        // for (int n = 0; n < N; n++)
+        // {
+        //     float *col_data_n = col.data() + n * (col.shape()[1] * col.shape()[2]);
 
-            for (int c_in = 0; c_in < C; c_in++)
-            {
-                for (int kh = 0; kh < kernel_h; kh++)
-                {
-                    for (int kw = 0; kw < kernel_w; kw++)
-                    {
-                        int row_idx = c_in * kernel_h * kernel_w + kh * kernel_w + kw;
-                        for (int oh = 0; oh < out_h; oh++)
-                        {
-                            int ih = oh * stride_h + kh - pad_h;
-                            for (int ow = 0; ow < out_w; ow++)
-                            {
-                                int iw = ow * stride_w + kw - pad_w;
-                                float val = 0.f;
-                                if (ih >= 0 && ih < H && iw >= 0 && iw < W)
-                                {
-                                    val = input.at4d(n, c_in, ih, iw);
-                                }
-                                int col_idx = row_idx * (out_h * out_w) + (oh * out_w + ow);
-                                col_data_n[col_idx] = val;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        //     for (int c_in = 0; c_in < C; c_in++)
+        //     {
+        //         for (int kh = 0; kh < kernel_h; kh++)
+        //         {
+        //             for (int kw = 0; kw < kernel_w; kw++)
+        //             {
+        //                 int row_idx = c_in * kernel_h * kernel_w + kh * kernel_w + kw;
+        //                 for (int oh = 0; oh < out_h; oh++)
+        //                 {
+        //                     int ih = oh * stride_h + kh - pad_h;
+        //                     for (int ow = 0; ow < out_w; ow++)
+        //                     {
+        //                         int iw = ow * stride_w + kw - pad_w;
+        //                         float val = 0.f;
+        //                         if (ih >= 0 && ih < H && iw >= 0 && iw < W)
+        //                         {
+        //                             val = input.at4d(n, c_in, ih, iw);
+        //                         }
+        //                         int col_idx = row_idx * (out_h * out_w) + (oh * out_w + ow);
+        //                         col_data_n[col_idx] = val;
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
         return col;
     }
 }

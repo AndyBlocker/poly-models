@@ -16,16 +16,16 @@ Tensor<float> linear(const Tensor<float> &input, const LinearParam &param)
     const float* inptr= input.data();
     float* outptr = output.data();
 
-    for(int n_i=0; n_i<N; n_i++){
-        for(int oc=0; oc<out_features; oc++){
-            double sum = 0.0;
-            for(int ic=0; ic<in_features; ic++){
-                sum += (double)inptr[n_i*in_features + ic] * (double)wptr[oc*in_features + ic];
-            }
-            sum += param.bias[oc];
-            outptr[n_i*out_features + oc] = (float)sum;
-        }
-    }
+    // for(int n_i=0; n_i<N; n_i++){
+    //     for(int oc=0; oc<out_features; oc++){
+    //         double sum = 0.0;
+    //         for(int ic=0; ic<in_features; ic++){
+    //             sum += (double)inptr[n_i*in_features + ic] * (double)wptr[oc*in_features + ic];
+    //         }
+    //         sum += param.bias[oc];
+    //         outptr[n_i*out_features + oc] = (float)sum;
+    //     }
+    // }
 
     return output;
 }
